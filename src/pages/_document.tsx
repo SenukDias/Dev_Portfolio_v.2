@@ -92,7 +92,7 @@ class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#262626" />
           <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
           <meta name="theme-color" content="#D79921" />
-          <meta name="description" content="M4TT72 | Yassine Fathi" />
+          <meta name="description" content="This is a Developer Site of Senuk Dias. UI Created as Terminal Window, You can use commands for get Details about Me. Type 'help'. ENJOY !" />
         </Head>
 
         <body>
