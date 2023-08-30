@@ -1,4 +1,4 @@
-# [M4TT72 | Terminal](https://term.m4tt72.com)
+# [Senukdias.dev | Terminal](https://https://senuk-dias-dev2.vercel.app/)
 
 A terminal style website
 
