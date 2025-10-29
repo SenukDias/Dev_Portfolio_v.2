@@ -1,3 +1,4 @@
+import { SessionProvider } from 'next-auth/react';
 import { createInstance, MatomoProvider } from '@m4tt72/matomo-tracker-react';
 import Head from 'next/head';
 import React, { useEffect } from 'react';
@@ -57,8 +58,10 @@ export default (props) => {
   });
 
   return (
-    <MatomoProvider value={instance}>
-      <App {...props} />
-    </MatomoProvider>
+    <SessionProvider session={props.pageProps.session}>
+      <MatomoProvider value={instance}>
+        <App {...props} />
+      </MatomoProvider>
+    </SessionProvider>
   );
 };
