@@ -7,3 +7,4 @@ export * from './weather';
 export * from './neofetch';
 export * from './cowsay';
 export * from './ronin';
+export * from './auth';

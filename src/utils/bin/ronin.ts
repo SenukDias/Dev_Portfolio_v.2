@@ -41,8 +41,6 @@ export const ronin = async (
   '------'
   `;
 
-  setStreamingOutput(graphic);
-
   while (!done) {
     const { value, done: readerDone } = await reader.read();
     done = readerDone;
@@ -62,7 +60,7 @@ export const ronin = async (
 
           if (content) {
             fullResponse += content;
-            setStreamingOutput(fullResponse);
+            setStreamingOutput(graphic + fullResponse);
           }
         } catch (error) {
           // ignore
