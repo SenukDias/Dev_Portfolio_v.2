@@ -28,7 +28,7 @@ export default async function handler(
             content: question,
           },
         ],
-        max_tokens: 100,
+        max_tokens: 1024,
         temperature: 1,
         top_p: 1,
         model: 'gpt-4o',
