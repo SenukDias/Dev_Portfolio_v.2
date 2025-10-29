@@ -1,3 +1,4 @@
+import { getSession } from 'next-auth/react';
 import packageJson from '../../../package.json';
 import * as bin from './index';
 
@@ -12,6 +13,10 @@ export const echo = async (args: string[]): Promise<string> => {
 };
 
 export const whoami = async (args: string[]): Promise<string> => {
+  const session = await getSession();
+  if (session) {
+    return session.user.name;
+  }
   return 'guest';
 };
 
