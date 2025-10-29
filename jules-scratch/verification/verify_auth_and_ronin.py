@@ -17,4 +17,9 @@ def test_auth_and_ronin(page: Page):
     page.locator('input[aria-label="prompt"]').press("Enter")
     expect(page.locator("text=.------.")).to_be_visible()
 
+    # Verify streaming output is cleared
+    page.locator('input[aria-label="prompt"]').fill("ls")
+    page.locator('input[aria-label="prompt"]').press("Enter")
+    expect(page.locator("text=.------.")).not_to_be_visible()
+
     page.screenshot(path="jules-scratch/verification/verification.png")

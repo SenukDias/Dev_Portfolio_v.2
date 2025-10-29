@@ -1,3 +1,4 @@
+import { useAuth } from '../authProvider';
 import packageJson from '../../../package.json';
 import * as bin from './index';
 
@@ -12,7 +13,7 @@ export const echo = async (args: string[]): Promise<string> => {
 };
 
 export const whoami = async (args: string[]): Promise<string> => {
-  return 'guest';
+  return useAuth.getState().username;
 };
 
 export const date = async (args: string[]): Promise<string> => {

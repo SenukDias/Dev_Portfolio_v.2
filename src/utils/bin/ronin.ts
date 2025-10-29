@@ -1,9 +1,10 @@
 import { useAuth } from '../authProvider';
-import { useShell } from '../shellProvider';
 
-export const ronin = async (args: string[]): Promise<string> => {
+export const ronin = async (
+  args: string[],
+  setStreamingOutput: (output: string) => void,
+): Promise<string> => {
   const question = args.join(' ');
-  const { setHistory } = useShell.getState();
   const { isAuthenticated } = useAuth.getState();
 
   if (!isAuthenticated) {
@@ -40,7 +41,7 @@ export const ronin = async (args: string[]): Promise<string> => {
   '------'
   `;
 
-  setHistory(graphic);
+  setStreamingOutput(graphic);
 
   while (!done) {
     const { value, done: readerDone } = await reader.read();
@@ -61,7 +62,7 @@ export const ronin = async (args: string[]): Promise<string> => {
 
           if (content) {
             fullResponse += content;
-            setHistory(fullResponse);
+            setStreamingOutput(fullResponse);
           }
         } catch (error) {
           // ignore

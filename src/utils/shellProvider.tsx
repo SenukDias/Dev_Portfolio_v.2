@@ -7,12 +7,14 @@ interface ShellContextType {
   history: History[];
   command: string;
   lastCommandIndex: number;
+  streamingOutput: string;
 
   setHistory: (output: string) => void;
   setCommand: (command: string) => void;
   setLastCommandIndex: (index: number) => void;
   execute: (command: string) => Promise<void>;
   clearHistory: () => void;
+  setStreamingOutput: (output: string) => void;
 }
 
 const ShellContext = React.createContext<ShellContextType>(null);
@@ -28,6 +30,7 @@ export const ShellProvider: React.FC<ShellProviderProps> = ({ children }) => {
   const [history, _setHistory] = React.useState<History[]>([]);
   const [command, _setCommand] = React.useState<string>('');
   const [lastCommandIndex, _setLastCommandIndex] = React.useState<number>(0);
+  const [streamingOutput, _setStreamingOutput] = React.useState<string>('');
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
@@ -66,7 +69,12 @@ export const ShellProvider: React.FC<ShellProviderProps> = ({ children }) => {
     _setLastCommandIndex(index);
   };
 
+  const setStreamingOutput = (output: string) => {
+    _setStreamingOutput(output);
+  };
+
   const execute = async () => {
+    _setStreamingOutput('');
     const [cmd, ...args] = command.split(' ').slice(1);
 
     switch (cmd) {
@@ -87,9 +95,13 @@ export const ShellProvider: React.FC<ShellProviderProps> = ({ children }) => {
           setHistory(`Command not found: ${cmd}. Try 'help' to get started.`);
         } else {
           try {
-            const output = await bin[cmd](args);
+            if (cmd === 'ronin') {
+              await bin.ronin(args, setStreamingOutput);
+            } else {
+              const output = await bin[cmd](args);
 
-            setHistory(output);
+              setHistory(output);
+            }
           } catch (error) {
             setHistory(error.message);
           }
@@ -104,11 +116,13 @@ export const ShellProvider: React.FC<ShellProviderProps> = ({ children }) => {
         history,
         command,
         lastCommandIndex,
+        streamingOutput,
         setHistory,
         setCommand,
         setLastCommandIndex,
         execute,
         clearHistory,
+        setStreamingOutput,
       }}
     >
       {children}
