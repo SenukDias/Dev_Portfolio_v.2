@@ -32,16 +32,19 @@ export default async function handler(
         temperature: 1,
         top_p: 1,
         model: 'gpt-4o',
+        stream: true,
       },
       {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${AZURE_API_KEY}`,
         },
+        responseType: 'stream',
       },
     );
 
-    res.status(200).json(response.data);
+    res.setHeader('Content-Type', 'text/event-stream');
+    response.data.pipe(res);
   } catch (error) {
     res.status(500).json({ message: 'Error connecting to the AI service.' });
   }
