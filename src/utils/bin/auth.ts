@@ -16,3 +16,9 @@ export const logout = async (): Promise<string> => {
 
   return 'Logged out';
 };
+
+export const loginGithub = async (): Promise<string> => {
+  window.open('/api/auth/github', '_self');
+
+  return 'Redirecting to GitHub for authentication...';
+};

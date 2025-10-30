@@ -27,10 +27,12 @@
   },
   "dependencies": {
     "@m4tt72/matomo-tracker-react": "^0.6.2",
+    "@types/js-cookie": "^3.0.6",
     "@vercel/analytics": "^1.0.2",
     "axios": "^1.4.0",
     "cowsay-browser": "^1.1.8",
     "date-fns": "^2.28.0",
+    "js-cookie": "^3.0.5",
     "next": "^16.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
