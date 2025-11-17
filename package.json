@@ -26,12 +26,15 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@auth/pg-adapter": "^1.11.1",
     "@m4tt72/matomo-tracker-react": "^0.6.2",
     "@vercel/analytics": "^1.0.2",
     "axios": "^1.4.0",
+    "bcryptjs": "^3.0.3",
     "date-fns": "^2.28.0",
     "next": "16.0.1",
     "next-auth": "^4.24.12",
+    "pg": "^8.16.3",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-icons": "^4.8.0"
@@ -39,7 +42,9 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.38.0",
+    "@types/bcryptjs": "^3.0.0",
     "@types/node": "^18.15.11",
+    "@types/pg": "^8.15.6",
     "@types/react": "^18.0.34",
     "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@typescript-eslint/parser": "^8.46.2",
